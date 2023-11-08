@@ -1,0 +1,23 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: NOMBRE_DEL_PROYECTO
+  name: admin-role
+rules:
+- apiGroups: [""]
+  resources: ["pods", "services", "configmaps", "routes", "deployments", "pods/exec", "pods/log"]
+  verbs: ["get", "list", "watch", "create", "update", "delete"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  namespace: NOMBRE_DEL_PROYECTO
+  name: admin-role-binding
+subjects:
+- kind: User
+  name: NOMBRE_DEL_USUARIO
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: admin-role
+  apiGroup: rbac.authorization.k8s.io
