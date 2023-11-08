@@ -39,3 +39,23 @@ metadata:
   name: NOMBRE_DEL_USUARIO
   annotations:
     user.openshift.io/desired-identity: htpass
+
+
+		apiVersion: v1
+		kind: Role
+		metadata:
+		  name: Nombre del ROL
+		rules:
+		- apiGroups: null
+		  attributeRestrictions: null
+		  resources:
+		  - pods
+		  - projects
+		  - builds
+		  verbs:
+		  - get
+		  - list	
+		  - create
+		  - update
+		  - delete
+		  - watch
