@@ -21,3 +21,9 @@ roleRef:
   kind: Role
   name: admin-role
   apiGroup: rbac.authorization.k8s.io
+
+
+
+
+oc whoami -t | xargs -I {} oc change-password NOMBRE_DE_USUARIO -p NUEVA_CONTRASEÑA --token={}
+
