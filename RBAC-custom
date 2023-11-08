@@ -1,11 +1,13 @@
 apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
+kind: ClusterRole
 metadata:
-  namespace: NOMBRE_DEL_PROYECTO
-  name: admin-role
+  name: project-visibility-role
 rules:
+- apiGroups: ["project.openshift.io"]
+  resources: ["projects"]
+  verbs: ["get", "list", "watch"]
 - apiGroups: [""]
-  resources: ["pods", "services", "configmaps", "routes", "deployments", "pods/exec", "pods/log"]
+  resources: ["pods", "services", "configmaps", "routes", "deployments", "secrets", "builds", "buildconfigs", "imagestreams"]
   verbs: ["get", "list", "watch", "create", "update", "delete"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
