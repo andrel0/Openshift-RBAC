@@ -27,3 +27,13 @@ roleRef:
 
 oc whoami -t | xargs -I {} oc change-password NOMBRE_DE_USUARIO -p NUEVA_CONTRASEÑA --token={}
 
+oc create secret generic NOMBRE_DEL_USUARIO-pass-secret --from-literal=password=VALOR_BASE64 -n NOMBRE_DEL_PROYECTO
+
+oc edit user NOMBRE_DEL_USUARIO -n NOMBRE_DEL_PROYECTO
+
+apiVersion: user.openshift.io/v1
+kind: User
+metadata:
+  name: NOMBRE_DEL_USUARIO
+  annotations:
+    user.openshift.io/desired-identity: htpass
